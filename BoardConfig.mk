@@ -124,7 +124,7 @@ BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
 
 # Super
 BOARD_SUPER_PARTITION_SIZE := 10804527104
-BOARD_SUPER_PARTITION_GROUPS := QTI_DYNAMIC_PARTITIONS_partitions
+BOARD_SUPER_PARTITION_GROUPS := QTI_DYNAMIC_PARTITIONS
 BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 5398069248
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := \
     system \
@@ -187,7 +187,7 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     ashmemd_aidl_interface-cpp \
     libashmemd_client \
     libcap \
-    libicui18n \
+#    libicui18n \
     libicuuc \
     libion \
     libpcrecpp \
@@ -202,7 +202,7 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libcap.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libicui18n.so \
+#    $(TARGET_OUT_SHARED_LIBRARIES)/libicui18n.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libicuuc.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpcrecpp.so \
