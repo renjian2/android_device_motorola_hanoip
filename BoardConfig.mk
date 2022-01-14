@@ -227,7 +227,6 @@ TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TARGET_SYSTEM_PROP += $(PLATFORM_PATH)/system.prop
 
 BOARD_SUPPRESS_SECURE_ERASE := true
-TW_USE_TOOLBOX := true
 TW_HAS_EDL_MODE := true
 
 # Asian region languages
