@@ -188,9 +188,10 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     bootctrl.$(TARGET_BOARD_PLATFORM).recovery \
     libashmemd_client \
     libcap \
-#    libicui18n \
+    libicui18n \
     libicuuc \
     libion \
+    libandroidicu \
     libpcrecpp \
     libprocinfo \
     libxml2
