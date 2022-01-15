@@ -18,6 +18,9 @@
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
+# Installs gsi keys into ramdisk, to boot a GSI with verified boot.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
+
 # define hardware platform
 PRODUCT_PLATFORM := sm6150
 PLATFORM_PATH := device/motorola/hanoip
@@ -49,7 +52,7 @@ PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
     update_engine \
-    update_verifier
+    update_verifier 
 
 PRODUCT_PACKAGES += \
     bootctrl.$(PRODUCT_PLATFORM) \
@@ -75,8 +78,8 @@ PRODUCT_PACKAGES += \
     bootctrl.$(PRODUCT_PLATFORM).recovery
 
 # Apex libraries
-PRODUCT_HOST_PACKAGES += \
-    libandroidicu
+PRODUCT_COPY_FILES += \
+    $(OUT_DIR)/target/product/$(PRODUCT_RELEASE_NAME)/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libandroidicu.so
 
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -84,11 +87,12 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # qcom standard decryption
 PRODUCT_PACKAGES += \
     qcom_decrypt \
-    qcom_decrypt_fbe \
+    qcom_decrypt_fbe 
+
+# fastbootd
+PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     fastbootd
-
-PRODUCT_SHIPPING_API_LEVEL := 30
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
