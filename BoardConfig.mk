@@ -127,8 +127,8 @@ TARGET_USES_MKE2FS := true
 # A/B device flags
 AB_OTA_UPDATER := true
 TARGET_NO_KERNEL := false
-TARGET_NO_RECOVERY := false
-BOARD_USES_RECOVERY_AS_BOOT := false
+TARGET_NO_RECOVERY := true
+BOARD_USES_RECOVERY_AS_BOOT := true
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
 # TWRP specific build flags
