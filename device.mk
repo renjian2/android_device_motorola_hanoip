@@ -38,16 +38,10 @@ AB_OTA_PARTITIONS += \
     recovery \
     system \
     vbmeta \
-    vendor \
-    vbmeta \
     vbmeta_system \
-    vendor_boot
+    vendor
 
 	
-PRODUCT_COPY_FILES += \
-    $(PLATFORM_PATH)/recovery/root/vendor/lib/modules/1.1/aw8646.ko:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib/modules/1.1/aw8646.ko \
-    $(PLATFORM_PATH)/recovery/root/vendor/lib/modules/1.1/ilitek_v3_mmi.ko:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib/modules/1.1/ilitek_v3_mmi.ko \
-
 PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
@@ -77,9 +71,10 @@ PRODUCT_PACKAGES += \
     bootctrl.$(PRODUCT_PLATFORM) \
     bootctrl.$(PRODUCT_PLATFORM).recovery
 
-PRODUCT_COPY_FILES += \
-    $(OUT_DIR)/target/product/$(PRODUCT_RELEASE_NAME)/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libandroidicu.so
-
+# Apex libraries
+PRODUCT_HOST_PACKAGES += \
+    libandroidicu
+    
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
@@ -93,8 +88,6 @@ PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     fastbootd
 
-PRODUCT_SHIPPING_API_LEVEL := 30
-
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
@@ -103,6 +96,11 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
     ro.bootimage.build.date.utc \
     ro.build.date.utc
-   
+
+# Apex libraries
+PRODUCT_COPY_FILES += \
+    $(OUT_DIR)/target/product/$(PRODUCT_RELEASE_NAME)/obj/SHARED_LIBRARIES/libandroidicu_intermediates/libandroidicu.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libandroidicu.so
+
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.build.security_patch=2099-12-31
