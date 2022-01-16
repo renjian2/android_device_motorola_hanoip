@@ -42,3 +42,7 @@ on post-fs
 on property:ro.crypto.type=file
     setprop ro.crypto.state encrypted
     setprop twrp.apex.loaded true
+
+on init
+    mkdir /dev/fscklogs 0770 root system
+    setprop prepdecrypt.loglevel 2
