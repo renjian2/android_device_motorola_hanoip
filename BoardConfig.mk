@@ -121,13 +121,13 @@ BOARD_INCLUDE_RECOVERY_DTBO := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/recovery/root/system/etc/recovery.fstab
 
 # Partitions (listed in the file) to be wiped under recovery.
-TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery/root/system/etc/recovery.wipe
+TARGET_RECOVERY_WIPE := $(PLATFORM_PATH)/recovery/root/system/etc/recovery.wipe
 
 # properties
-TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
+TARGET_VENDOR_PROP += $(PLATFORM_PATH)/vendor.prop
 
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
@@ -181,7 +181,7 @@ BOARD_USES_QCOM_FBE_DECRYPTION := true
 BOARD_USES_METADATA_PARTITION := true
 
 # Extras
-TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+TARGET_SYSTEM_PROP += $(PLATFORM_PATH)/system.prop
 USE_RECOVERY_INSTALLER := true
 RECOVERY_INSTALLER_PATH := bootable/recovery/installer
 
