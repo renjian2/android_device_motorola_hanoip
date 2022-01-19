@@ -209,3 +209,4 @@ TARGET_COPY_OUT_PRODUCT := product
 # Logcat
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
+
