@@ -7,28 +7,6 @@ touch_path=
 firmware_path=/vendor/firmware
 firmware_file=
 
-wait_for_poweron()
-{
-	local wait_nomore
-	local readiness
-	local count
-	wait_nomore=60
-	count=0
-	while true; do
-		readiness=$(cat $touch_path/poweron)
-		if [ "$readiness" == "1" ]; then
-			break;
-		fi
-		count=$((count+1))
-		[ $count -eq $wait_nomore ] && break
-		sleep 1
-	done
-	if [ $count -eq $wait_nomore ]; then
-		return 1
-	fi
-	return 0
-}
-
 # Load TouchScreen Modules
 insmod $module_path/exfat.ko
 insmod $module_path/ilitek_v3_mmi.ko
