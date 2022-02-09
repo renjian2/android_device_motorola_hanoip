@@ -163,6 +163,7 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     libion \
     libxml2 \
     libpcrecpp \
+    vendor.display.config@1.0 \
     vendor.display.config@2.0 \
     libdisplayconfig.qti
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
@@ -192,7 +193,11 @@ TW_OVERRIDE_SYSTEM_PROPS := \
 RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libcap.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so
+    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libdisplayconfig.qti.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)vendor.display.config@2.0.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpcrecpp.so 
 
 # TWRP Debug Flags
 TARGET_USES_LOGD := true
