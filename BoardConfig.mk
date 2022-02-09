@@ -162,6 +162,7 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     libcap \
     libion \
     libxml2 \
+    libpcrecpp \
     vendor.display.config@2.0 \
     libdisplayconfig.qti
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
