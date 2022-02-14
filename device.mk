@@ -46,14 +46,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 # more partitions to this list for the bootloader and radio.
 AB_OTA_PARTITIONS += \
     boot \
-    dtbo \
-    odm \
-    product \
     system \
-    system_ext \
+    vendor \
+    product \
+    recovery \
     vbmeta \
     vbmeta_system \
-    vendor
+    dtbo
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
