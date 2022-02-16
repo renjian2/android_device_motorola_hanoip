@@ -165,6 +165,7 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     libpcrecpp \
     vendor.display.config@1.0 \
     vendor.display.config@2.0 \
+    libstatssocket \
     libdisplayconfig.qti
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 
