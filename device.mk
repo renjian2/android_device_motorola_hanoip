@@ -31,28 +31,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 LOCAL_PATH := device/motorola/hanoip
 
-# A/B support
-AB_OTA_UPDATER := true
-
 # VNDK
 PRODUCT_TARGET_VNDK_VERSION := 30
-
-# A/B
-ifeq ($(TARGET_IS_VAB),true)
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
-
-AB_OTA_PARTITIONS += \
-    boot \
-    dtbo \
-    odm \
-    product \
-    system \
-    system_ext \
-    vbmeta \
-    vbmeta_system \
-    vendor \
-    vendor_boot
-endif
 
 # A/B
 ifeq ($(TARGET_IS_VAB),true)
