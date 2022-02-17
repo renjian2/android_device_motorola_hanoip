@@ -45,7 +45,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 # with "_a" and "_b" variants in the device. Note that the vendor can add more
 # more partitions to this list for the bootloader and radio.
 AB_OTA_PARTITIONS += \
-    boot \
+     boot \
     dtbo \
     odm \
     product \
@@ -53,7 +53,8 @@ AB_OTA_PARTITIONS += \
     system_ext \
     vbmeta \
     vbmeta_system \
-    vendor
+    vendor \
+    vendor_boot
 
 PRODUCT_PACKAGES += \
     otapreopt_script \
