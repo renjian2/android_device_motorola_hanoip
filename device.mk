@@ -38,12 +38,9 @@ AB_OTA_UPDATER := true
 PRODUCT_TARGET_VNDK_VERSION := 30
 
 # A/B
-ENABLE_VIRTUAL_AB := true
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+ifeq ($(TARGET_IS_VAB),true)
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
-# A/B updater updatable partitions list. Keep in sync with the partition list
-# with "_a" and "_b" variants in the device. Note that the vendor can add more
-# more partitions to this list for the bootloader and radio.
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
@@ -53,13 +50,24 @@ AB_OTA_PARTITIONS += \
     system_ext \
     vbmeta \
     vbmeta_system \
-    vendor
+    vendor \
+    vendor_boot
+endif
+
+# A/B
+ifeq ($(TARGET_IS_VAB),true)
+# Inherit virtual_ab_ota product
+$(call inherit-product, \
+    $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
 PRODUCT_PACKAGES += \
-    otapreopt_script \
-    update_engine \
-    update_engine_sideload \
-    update_verifier
+    android.hardware.boot@1.1-impl-qti \
+    android.hardware.boot@1.1-impl-qti.recovery \
+    android.hardware.boot@1.1-service \
+    bootctrl.$(PRODUCT_PLATFORM).recovery 
+
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -67,18 +75,29 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_vendor=true \
+    POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
+    FILESYSTEM_TYPE_vendor=ext4 \
+    POSTINSTALL_OPTIONAL_vendor=true
+
+PRODUCT_PACKAGES += \
+  update_engine \
+  update_engine_sideload \
+  update_verifier
+
+PRODUCT_PACKAGES += \
+    checkpoint_gc \
+    otapreopt_script
+endif
+
 # API
 PRODUCT_SHIPPING_API_LEVEL := 30
 
 # tell update_engine to not change dynamic partition table during updates
 # needed since our qti_dynamic_partitions does not include
 # vendor and odm and we also dont want to AB update them
-TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
-
-# Boot control HAL
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-impl-qti.recovery \
-    bootctrl.$(PRODUCT_PLATFORM).recovery \
+TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true   
 
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -96,7 +115,6 @@ PRODUCT_PACKAGES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    hardware/qcom-caf/bootctrl \
     vendor/qcom/opensource/commonsys-intf/display
 
 # OEM otacert
