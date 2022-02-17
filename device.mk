@@ -35,19 +35,7 @@ LOCAL_PATH := device/motorola/hanoip
 PRODUCT_TARGET_VNDK_VERSION := 30
 
 # A/B
-AB_OTA_UPDATER := true
-AB_OTA_PARTITIONS += \
-    boot \
-    dtbo \
-    odm \
-    product \
-    system \
-    system_ext \
-    vbmeta \
-    vbmeta_system \
-    vendor \
-    vendor_boot
-
+ifeq ($(TARGET_IS_VAB),true)
 # Inherit virtual_ab_ota product
 $(call inherit-product, \
     $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
@@ -81,6 +69,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     checkpoint_gc \
     otapreopt_script
+endif
 
 # API
 PRODUCT_SHIPPING_API_LEVEL := 30
