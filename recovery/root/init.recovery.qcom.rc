@@ -33,12 +33,12 @@ on fs
 
 on boot
     start health-hal-2-1
-    start runatboot
+    start load_ts_firmware
     
 on post-fs
     start boot-hal-1-1
 
-service runatboot /system/bin/runatboot.sh
+service load_ts_firmware /system/bin/load_ts_firmware.sh
     oneshot
     user root
     group root
