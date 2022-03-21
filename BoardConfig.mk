@@ -128,8 +128,6 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 # Extras
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
-USE_RECOVERY_INSTALLER := true
-RECOVERY_INSTALLER_PATH := bootable/recovery/installer
 
 # AVB
 BOARD_AVB_ENABLE := true
@@ -183,6 +181,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone50/temp"
 TW_THEME := portrait_hdpi
 TW_BRIGHTNESS_PATH := "/proc/lcd_brightness"
+TW_QCOM_ATS_OFFSET := 1621580431500
 TW_DEFAULT_BRIGHTNESS := 420
 TW_MAX_BRIGHTNESS := 1024
 TW_EXCLUDE_DEFAULT_USB_INIT := true
@@ -191,7 +190,7 @@ TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_INCLUDE_RESETPROP := true
-TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_INCLUDE_RESETPROP := true
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.date.utc;ro.build.product;ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
 RECOVERY_LIBRARY_SOURCE_FILES += \
